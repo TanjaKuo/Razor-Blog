@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/tanya/Projects/Bloggie/BloggieWeb
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Admin/Blogs/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQmxvZ3MvQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
