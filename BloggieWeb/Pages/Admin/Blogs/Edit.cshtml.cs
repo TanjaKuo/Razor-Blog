@@ -28,21 +28,22 @@ namespace BloggieWeb.Pages.Admin.Blogs
             BlogPost = _bloggieDbContext.BlogPosts.Find(id);
         }
 
-        public IActionResult OnPost()
+        // because we have two btns in edit page, using OnPostEdit instead of OnPost
+        public IActionResult OnPostEdit()
         {
             var existingBlogPost = _bloggieDbContext.BlogPosts.Find(BlogPost.Id);
 
-            if(existingBlogPost != null)
+            if (existingBlogPost != null)
             {
 
                 existingBlogPost.Heading = BlogPost.Heading;
                 existingBlogPost.PageTitle = BlogPost.PageTitle;
-                 existingBlogPost.Content = BlogPost.Content;
-                 existingBlogPost.ShortDescription = BlogPost.ShortDescription;
-                 existingBlogPost.FeaturedImageUrl = BlogPost.FeaturedImageUrl;
-                 existingBlogPost.UrlHandle = BlogPost.UrlHandle;
-                 existingBlogPost.PublishedDate = BlogPost.PublishedDate;
-                 existingBlogPost.Author = BlogPost.Author;
+                existingBlogPost.Content = BlogPost.Content;
+                existingBlogPost.ShortDescription = BlogPost.ShortDescription;
+                existingBlogPost.FeaturedImageUrl = BlogPost.FeaturedImageUrl;
+                existingBlogPost.UrlHandle = BlogPost.UrlHandle;
+                existingBlogPost.PublishedDate = BlogPost.PublishedDate;
+                existingBlogPost.Author = BlogPost.Author;
                 existingBlogPost.Visible = BlogPost.Visible;
             };
 
@@ -53,6 +54,22 @@ namespace BloggieWeb.Pages.Admin.Blogs
 
 
             return RedirectToPage("/Admin/Blogs/List");
+        }
+
+        // if we don't use OnPost keyword, we have to use [HttpPost] att
+        public IActionResult OnPostDelete()
+        {
+            var existingBlogPost = _bloggieDbContext.BlogPosts.Find(BlogPost.Id);
+
+            if(existingBlogPost != null)
+            {
+                _bloggieDbContext.BlogPosts.Remove(existingBlogPost);
+                _bloggieDbContext.SaveChanges();
+
+                return RedirectToPage("/Admin/Blogs/List");
+            }
+
+            return Page();
         }
     }
 }

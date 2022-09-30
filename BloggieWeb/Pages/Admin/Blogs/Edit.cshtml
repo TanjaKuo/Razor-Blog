@@ -53,8 +53,10 @@
                 <input class="form-check-input" type="checkbox" id="isVisible" asp-for="BlogPost.Visible">
                 <label class="form-check-label" for="isVisible">Is Visible</label>
             </div>
-            <div class="mb-3">
-                <button class="btn btn-primary" type="submit">Submit</button>
+            <div class="mb-3 d-flexjust justify-content-between">
+                @* because we have two btns here and by using asp-page-handler, it can regonized which is edit(OnPostEdit)/delete*@
+                <button class="btn btn-primary" type="submit" asp-page-handler="Edit">Submit</button>
+                <button class="btn btn-danger" type="submit" asp-page-handler="Delete">Delete</button>
             </div>
         </form>
     </div>
