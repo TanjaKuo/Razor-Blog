@@ -14,6 +14,7 @@
     <None Remove="Data\" />
     <None Remove="Pages\Admin\" />
     <None Remove="Pages\Admin\Blogs\" />
+    <None Remove="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -21,6 +22,7 @@
     <Folder Include="Data\" />
     <Folder Include="Pages\Admin\" />
     <Folder Include="Pages\Admin\Blogs\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
