@@ -32,7 +32,8 @@ namespace BloggieWeb.Pages.Admin.Blogs
         {
         }
 
-        public void OnPost()
+        // in order to return something, changed void -> IActionResult
+        public IActionResult OnPost()
         {
             //            // option 1. set name on html and bind 1 by 1
             //            //var heading = Request.Form["heading"];
@@ -58,6 +59,9 @@ namespace BloggieWeb.Pages.Admin.Blogs
 
             _bloggieDbContext.BlogPosts.Add(blogPost);
             _bloggieDbContext.SaveChanges();
+
+
+            return RedirectToPage("/Admin/Blogs/List");
         }
     }
 }

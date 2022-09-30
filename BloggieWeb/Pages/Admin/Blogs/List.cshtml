@@ -10,12 +10,22 @@
 </div>
 
 <div class="container">
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <td>Id</td>
                 <td>Heading</td>
             </tr>
         </thead>
+        <tbody>
+            @* the model.blogposts is from the cs file, public BlogPosts*@
+            @foreach (var singleBlogPost in Model.BlogPosts)
+            {
+                <tr>
+                    <td>@singleBlogPost.Id</td>
+                    <td>@singleBlogPost.Heading</td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
