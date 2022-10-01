@@ -21,17 +21,19 @@ namespace BloggieWeb.Pages.Admin.Blogs
             this._bloggieDbContext = bloggieDbContext;
         }
 
-
-        public void OnGet(Guid id)
+        public async Task OnGet(Guid id)
+        //public void OnGet(Guid id)
         {
             // by using BlogPost, it will ensure we have id, thus we don't need to check if id == null 
-            BlogPost = _bloggieDbContext.BlogPosts.Find(id);
+            BlogPost = await _bloggieDbContext.BlogPosts.FindAsync(id);
         }
 
         // because we have two btns in edit page, using OnPostEdit instead of OnPost
-        public IActionResult OnPostEdit()
+        //public IActionResult OnPostEdit()
+        public async Task<IActionResult> OnPostEdit()
         {
-            var existingBlogPost = _bloggieDbContext.BlogPosts.Find(BlogPost.Id);
+            // var existingBlogPost = _bloggieDbContext.BlogPosts.Find(BlogPost.Id);
+            var existingBlogPost = await _bloggieDbContext.BlogPosts.FindAsync(BlogPost.Id);
 
             if (existingBlogPost != null)
             {
@@ -50,21 +52,24 @@ namespace BloggieWeb.Pages.Admin.Blogs
 
             // dbcontext and EF are looking after our code, so we don't need to update it just need to save it
             //_bloggieDbContext.BlogPosts.Update(existingBlogPost);
-            _bloggieDbContext.SaveChanges();
-
+            //_bloggieDbContext.SaveChanges();
+            await _bloggieDbContext.SaveChangesAsync();
 
             return RedirectToPage("/Admin/Blogs/List");
         }
 
         // if we don't use OnPost keyword, we have to use [HttpPost] att
-        public IActionResult OnPostDelete()
+        //public IActionResult OnPostDelete()
+        public async Task<IActionResult> OnPostDelete()
         {
-            var existingBlogPost = _bloggieDbContext.BlogPosts.Find(BlogPost.Id);
+            //var existingBlogPost = _bloggieDbContext.BlogPosts.Find(BlogPost.Id);
+            var existingBlogPost = await _bloggieDbContext.BlogPosts.FindAsync(BlogPost.Id);
 
-            if(existingBlogPost != null)
+            if (existingBlogPost != null)
             {
                 _bloggieDbContext.BlogPosts.Remove(existingBlogPost);
-                _bloggieDbContext.SaveChanges();
+                //_bloggieDbContext.SaveChanges();
+                await _bloggieDbContext.SaveChangesAsync();
 
                 return RedirectToPage("/Admin/Blogs/List");
             }

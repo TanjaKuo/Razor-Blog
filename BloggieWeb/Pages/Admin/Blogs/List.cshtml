@@ -9,6 +9,10 @@
     </div>
 </div>
 
+@if (Model.BlogPosts != null && Model.BlogPosts.Any())
+    {
+
+
 <div class="container">
     <table class="table">
         <thead>
@@ -21,13 +25,21 @@
         <tbody>
             @* the model.blogposts is from the cs file, public BlogPosts*@
             @foreach (var singleBlogPost in Model.BlogPosts)
-            {
+                {
                 <tr>
                     <td>@singleBlogPost.Id</td>
                     <td>@singleBlogPost.Heading</td>
                     <td><a href="/Admin/Blogs/Edit/@singleBlogPost.Id">Edit</a></td>
                 </tr>
-            }
+                }
         </tbody>
     </table>
 </div>
+    }
+    else
+    {
+        <div class="container">
+            <p> No Blog Post Found</p>
+        </div>
+            
+    }
