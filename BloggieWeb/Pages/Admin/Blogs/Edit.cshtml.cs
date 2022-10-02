@@ -48,8 +48,7 @@ namespace BloggieWeb.Pages.Admin.Blogs
            try
                 
         {
-                throw new Exception();
-
+ 
                 await _blogPostRepository.UpdateAsync(BlogPost);
                 //ViewData["MessageDescription"] = "Record was successfully saved!";
 
