@@ -1,28 +1,24 @@
 ﻿<Properties StartupConfiguration="{08CD1C71-A2F3-4F45-B48D-6C4F9623AE2F}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.BloggieWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BloggieWeb/Pages/Admin/Blogs/Edit.cshtml.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Catchpoint enabled="false" hitAction="PrintExpression" traceExpression="error" exceptionName="System.Exception" includeSubclasses="True" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BloggieWeb/Pages/Admin/Blogs/List.cshtml.cs">
     <Files>
-      <File FileName="BloggieWeb/Data/BloggieDbContext.cs" Line="19" Column="1" />
-      <File FileName="BloggieWeb/Models/ViewModels/AddBlogPost.cs" Line="9" Column="44" />
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/Add.cshtml.cs" Line="40" Column="71" />
-      <File FileName="BloggieWeb/Models/Domain/BlogPost.cs" Line="10" Column="1" />
-      <File FileName="BloggieWeb/Program.cs" Line="1" Column="1" />
-      <File FileName="BloggieWeb/appsettings.json" Line="1" Column="1" />
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/Add.cshtml" Line="60" Column="1" />
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/List.cshtml" Line="33" Column="7" />
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/List.cshtml.cs" Line="30" Column="1" />
-      <File FileName="BloggieWeb/Pages/Shared/_Layout.cshtml" Line="43" Column="32" />
-      <File FileName="BloggieWeb/Models/Domain/Tag.cs" Line="14" Column="1" />
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/Edit.cshtml" Line="59" Column="86" />
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/Edit.cshtml.cs" Line="66" Column="70" />
+      <File FileName="BloggieWeb/Pages/Admin/Blogs/Add.cshtml.cs" Line="65" Column="57" />
+      <File FileName="BloggieWeb/Pages/Admin/Blogs/List.cshtml.cs" Line="30" Column="66" />
+      <File FileName="BloggieWeb/Pages/Admin/Blogs/Edit.cshtml.cs" Line="62" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Bloggie" expanded="True">
             <Node name="BloggieWeb" expanded="True">
-              <Node name="Models" expanded="True" />
               <Node name="Pages" expanded="True">
                 <Node name="Admin" expanded="True">
                   <Node name="Blogs" expanded="True">
@@ -32,6 +28,7 @@
                   </Node>
                 </Node>
               </Node>
+              <Node name="Repositories" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -41,11 +38,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Catchpoint enabled="false" hitAction="PrintExpression" traceExpression="error" exceptionName="System.Exception" includeSubclasses="True" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
 </Properties>

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BloggieWeb.Data;
 using BloggieWeb.Models.Domain;
 using BloggieWeb.Models.ViewModels;
+using BloggieWeb.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -13,7 +14,8 @@ namespace BloggieWeb.Pages.Admin.Blogs
     public class AddModel : PageModel
     {
 
-        private readonly BloggieDbContext _bloggieDbContext;
+        //private readonly BloggieDbContext _bloggieDbContext;
+        private readonly IBlogPostRepository _blogPostRepository;
         //        // options 2. set asp-for and bind propert 1 by 1
         //        //[BindProperty]
         //        //public string Heading { get; set; }
@@ -22,10 +24,12 @@ namespace BloggieWeb.Pages.Admin.Blogs
         [BindProperty]
         public AddBlogPost AddBlogPostRequest { get; set; }
 
-
-        public AddModel(BloggieDbContext bloggieDbContext)
+        // now we talk to repository instead of DbContext
+        //public AddModel(BloggieDbContext bloggieDbContext)
+        public AddModel(IBlogPostRepository blogPostRepository)
         {
-            _bloggieDbContext = bloggieDbContext;
+            //_bloggieDbContext = bloggieDbContext;
+            _blogPostRepository = blogPostRepository;
         }
 
         public void OnGet()
@@ -57,11 +61,11 @@ namespace BloggieWeb.Pages.Admin.Blogs
 
             };
 
-            await _bloggieDbContext.BlogPosts.AddAsync(blogPost);
-            await _bloggieDbContext.SaveChangesAsync();
+            await _blogPostRepository.AddAsync(blogPost);
             //_bloggieDbContext.BlogPosts.Add(blogPost);
             //_bloggieDbContext.SaveChanges();
 
+            TempData["MessageDescription"] = "New blog post created!";
 
             return RedirectToPage("/Admin/Blogs/List");
         }
