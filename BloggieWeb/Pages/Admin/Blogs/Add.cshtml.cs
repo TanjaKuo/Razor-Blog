@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using BloggieWeb.Data;
 using BloggieWeb.Models.Domain;
@@ -65,7 +66,13 @@ namespace BloggieWeb.Pages.Admin.Blogs
             //_bloggieDbContext.BlogPosts.Add(blogPost);
             //_bloggieDbContext.SaveChanges();
 
-            TempData["MessageDescription"] = "New blog post created!";
+            var notification = new Notification
+            {
+                Message = "New blog post created successfully!",
+                Type = Enums.NotificationType.Success
+            };
+
+            TempData["Notification"] = JsonSerializer.Serialize(notification);
 
             return RedirectToPage("/Admin/Blogs/List");
         }

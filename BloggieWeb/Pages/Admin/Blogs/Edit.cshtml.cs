@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using BloggieWeb.Data;
 using BloggieWeb.Models.Domain;
+using BloggieWeb.Models.ViewModels;
 using BloggieWeb.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -43,8 +45,27 @@ namespace BloggieWeb.Pages.Admin.Blogs
             //_bloggieDbContext.BlogPosts.Update(existingBlogPost);
             //_bloggieDbContext.SaveChanges();
 
-            await _blogPostRepository.UpdateAsync(BlogPost);
-            ViewData["MessageDescription"] = "Record was successfully saved!";
+           try
+                
+        {
+                throw new Exception();
+
+                await _blogPostRepository.UpdateAsync(BlogPost);
+                //ViewData["MessageDescription"] = "Record was successfully saved!";
+
+                ViewData["Notification"] = new Notification
+                {
+                    Message = "Record update successfully!",
+                    Type = Enums.NotificationType.Success
+                };
+            }catch(Exception e)
+            {
+                ViewData["Notification"] = new Notification
+                {
+                    Message = "Oh no! Something went wrong",
+                    Type = Enums.NotificationType.Error
+                };
+            }
 
             //return RedirectToPage("/Admin/Blogs/List");
             return Page();
@@ -59,6 +80,13 @@ namespace BloggieWeb.Pages.Admin.Blogs
             var deleted = await _blogPostRepository.DeleteAsync(BlogPost.Id);
             if(deleted)
             {
+                var notification = new Notification
+                {
+                    Message = "Blog post was deleted successfully!",
+                    Type = Enums.NotificationType.Success
+                };
+
+                TempData["Notification"] = JsonSerializer.Serialize(notification);
                 return RedirectToPage("/Admin/Blogs/List");
             }
 
