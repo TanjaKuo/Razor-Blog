@@ -6,6 +6,8 @@ namespace BloggieWeb.Repositories
     public interface ITagRepository
     {
         Task<IEnumerable<Tag>> GetAllAsync();
+       
+
     }
 }
 

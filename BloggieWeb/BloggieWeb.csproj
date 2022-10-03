@@ -19,6 +19,7 @@
     <None Remove="Repositories\" />
     <None Remove="CloudinaryDotNet" />
     <None Remove="Pages\Blog\" />
+    <None Remove="Pages\Tags\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -29,6 +30,7 @@
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Repositories\" />
     <Folder Include="Pages\Blog\" />
+    <Folder Include="Pages\Tags\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />

@@ -20,6 +20,7 @@ namespace BloggieWeb.Repositories
 
             return tags.DistinctBy(x => x.Name.ToLower());
         }
+        
     }
 }
 

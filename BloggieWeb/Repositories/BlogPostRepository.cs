@@ -26,6 +26,11 @@ namespace BloggieWeb.Repositories
             return await _bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).ToListAsync();
         }
 
+        public async Task<IEnumerable<BlogPost>> GetAllAsync(string tagName)
+        {
+            return await (_bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).Where(x => x.Tags.Any(x => x.Name == tagName))).ToListAsync();
+        }
+
         public async Task<BlogPost> GetAsync(Guid id)
         {
             // by using include we can include the realtionship proprty
@@ -34,8 +39,10 @@ namespace BloggieWeb.Repositories
 
         public async Task<BlogPost> GetAsync(string urlHandle)
         {
-            return await _bloggieDbContext.BlogPosts.FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
+            return await _bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
         }
+
+       
 
         public async Task<BlogPost> UpdateAsync(BlogPost blogPost)
         {
@@ -87,7 +94,7 @@ namespace BloggieWeb.Repositories
             return false;
         }
 
-        
+       
     }
 }
 
