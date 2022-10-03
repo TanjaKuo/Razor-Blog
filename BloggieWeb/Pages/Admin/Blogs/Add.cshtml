@@ -33,7 +33,7 @@
             <div class="mb-3">
                 <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
                 <input type="file" class="form-control" id="featuredImageUpload" asp-for="FeaturedImage">
-                <img src="" alt="images" id="featuredImageDisplay" style="display:none; width: 300px;" class="mt-3"/>
+                <img src="" alt="images" id="featuredImageDisplay" style="display:none; width: 300px;" class="mt-3" />
             </div>
             <div class="mb-3">
                 <label for="featuredImageUrl" class="form-label">Featured Image Url</label>
@@ -51,6 +51,11 @@
             <div class="mb-3">
                 <label for="author" class="form-label">Author</label>
                 <input type="text" class="form-control" id="author" asp-for="AddBlogPostRequest.Author">
+            </div>
+
+            <div class="mb-3">
+                <label for="tags" class="form-label">Tags (comma seperated)</label>
+                <input type="text" class="form-control" id="tags" asp-for="Tags">
             </div>
             <div class="mb-3 form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="isVisible" asp-for="AddBlogPostRequest.Visible">

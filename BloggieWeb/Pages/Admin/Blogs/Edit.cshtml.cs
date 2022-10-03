@@ -21,11 +21,13 @@ namespace BloggieWeb.Pages.Admin.Blogs
         public BlogPost BlogPost { get; set; }
         [BindProperty]
         public IFormFile FeaturedImage { get; set; }
+        [BindProperty]
+        public string Tags { get; set; }
 
         //public EditModel(BloggieDbContext bloggieDbContext)
         public EditModel(IBlogPostRepository blogPostRepository)
         {
-            this._blogPostRepository = blogPostRepository;
+            _blogPostRepository = blogPostRepository;
         }
 
         public async Task OnGet(Guid id)
@@ -34,6 +36,11 @@ namespace BloggieWeb.Pages.Admin.Blogs
             // by using BlogPost, it will ensure we have id, thus we don't need to check if id == null 
             //BlogPost = await _bloggieDbContext.BlogPosts.FindAsync(id);
             BlogPost = await _blogPostRepository.GetAsync(id);
+
+            if(BlogPost != null && BlogPost.Tags != null)
+            {
+                Tags = string.Join(',', BlogPost.Tags.Select(x => x.Name));
+            }
         }
 
         // because we have two btns in edit page, using OnPostEdit instead of OnPost
@@ -50,6 +57,7 @@ namespace BloggieWeb.Pages.Admin.Blogs
            try
                 
         {
+                BlogPost.Tags = new List<Tag>(Tags.Split(',').Select(x => new Tag { Name = x.Trim() }));
  
                 await _blogPostRepository.UpdateAsync(BlogPost);
                 //ViewData["MessageDescription"] = "Record was successfully saved!";

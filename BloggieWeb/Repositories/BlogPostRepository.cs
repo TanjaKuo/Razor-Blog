@@ -23,12 +23,13 @@ namespace BloggieWeb.Repositories
 
         public async Task<IEnumerable<BlogPost>> GetAllAsync()
         {
-            return await _bloggieDbContext.BlogPosts.ToListAsync();
+            return await _bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).ToListAsync();
         }
 
         public async Task<BlogPost> GetAsync(Guid id)
         {
-            return await _bloggieDbContext.BlogPosts.FindAsync(id);
+            // by using include we can include the realtionship proprty
+            return await _bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<BlogPost> GetAsync(string urlHandle)
@@ -38,7 +39,7 @@ namespace BloggieWeb.Repositories
 
         public async Task<BlogPost> UpdateAsync(BlogPost blogPost)
         {
-            var existingBlogPost = await _bloggieDbContext.BlogPosts.FindAsync(blogPost.Id);
+            var existingBlogPost = await _bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).FirstOrDefaultAsync(x => x.Id == blogPost.Id);
 
             if (existingBlogPost != null)
             {
@@ -52,6 +53,19 @@ namespace BloggieWeb.Repositories
                 existingBlogPost.PublishedDate = blogPost.PublishedDate;
                 existingBlogPost.Author = blogPost.Author;
                 existingBlogPost.Visible = blogPost.Visible;
+
+
+                // delete the existing tags and
+
+                if(blogPost.Tags != null && blogPost.Tags.Any())
+                {
+                    _bloggieDbContext.Tags.RemoveRange(existingBlogPost.Tags);
+
+                    // add new tags
+                    blogPost.Tags.ToList().ForEach(x => x.BlogPostId = existingBlogPost.Id);
+                    await _bloggieDbContext.Tags.AddRangeAsync(blogPost.Tags);
+                }
+
             };
 
             await _bloggieDbContext.SaveChangesAsync();
@@ -60,7 +74,7 @@ namespace BloggieWeb.Repositories
 
         public async Task<bool> DeleteAsync(Guid id)
         {
-            var existingBlogPost = await _bloggieDbContext.BlogPosts.FindAsync(id);
+            var existingBlogPost = await _bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).FirstOrDefaultAsync(x => x.Id == id);
 
             if (existingBlogPost != null)
             {

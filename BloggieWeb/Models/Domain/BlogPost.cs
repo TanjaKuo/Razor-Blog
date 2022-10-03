@@ -25,6 +25,9 @@ namespace BloggieWeb.Models.Domain
         public string Author { get; set; }
 
         public bool Visible { get; set; }
+
+        // Navigation property
+        public ICollection<Tag> Tags { get; set; }
     }
 }
 

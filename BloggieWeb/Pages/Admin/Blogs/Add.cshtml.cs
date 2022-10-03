@@ -28,6 +28,9 @@ namespace BloggieWeb.Pages.Admin.Blogs
         [BindProperty]
         public IFormFile FeaturedImage { get; set; }
 
+        [BindProperty]
+        public string Tags { get; set; }
+
         // now we talk to repository instead of DbContext
         //public AddModel(BloggieDbContext bloggieDbContext)
         public AddModel(IBlogPostRepository blogPostRepository)
@@ -61,8 +64,8 @@ namespace BloggieWeb.Pages.Admin.Blogs
                 UrlHandle = AddBlogPostRequest.UrlHandle,
                 PublishedDate = AddBlogPostRequest.PublishedDate,
                 Author = AddBlogPostRequest.Author,
-                Visible = AddBlogPostRequest.Visible
-
+                Visible = AddBlogPostRequest.Visible,
+                Tags = new List<Tag>(Tags.Split(',').Select(x => new Tag() { Name = x.Trim()}))
             };
 
             await _blogPostRepository.AddAsync(blogPost);
