@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BloggieWeb.Models.Domain;
+using BloggieWeb.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BloggieWeb.Pages;
@@ -6,15 +8,21 @@ namespace BloggieWeb.Pages;
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
+    private readonly IBlogPostRepository _blogPostRepository;
 
-    public IndexModel(ILogger<IndexModel> logger)
+    // we don't want any data coming from index, so we skip the BindProperty
+    public List<BlogPost> Blogs { get; set; }
+
+    public IndexModel(ILogger<IndexModel> logger, IBlogPostRepository blogPostRepository)
     {
         _logger = logger;
+        _blogPostRepository = blogPostRepository;
     }
 
-    public void OnGet()
+    public async Task<IActionResult> OnGet()
     {
-
+        Blogs = (await _blogPostRepository.GetAllAsync()).ToList();
+        return Page();
     }
 }
 

@@ -12,9 +12,9 @@
     <div class="container">
         <form method="post">
             <div class="mb-3">
-@*add name att to the input, so we can read in the code behind class but preferr approach is
-    using bindproperty which we use asp-for here instead name*@
-<label for="heading" class="form-label">Heading</label>
+                @*add name att to the input, so we can read in the code behind class but preferr approach is
+            using bindproperty which we use asp-for here instead name*@
+                <label for="heading" class="form-label">Heading</label>
                 <input type="text" class="form-control" id="heading" asp-for="AddBlogPostRequest.Heading">
             </div>
             <div class="mb-3">
@@ -29,10 +29,17 @@
                 <label for="shortDescription" class="form-label">Short Description</label>
                 <input type="text" class="form-control" id="shortDescription" asp-for="AddBlogPostRequest.ShortDescription">
             </div>
+            @*this is for uploading featured images *@
+            <div class="mb-3">
+                <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
+                <input type="file" class="form-control" id="featuredImageUpload" asp-for="FeaturedImage">
+                <img src="" alt="images" id="featuredImageDisplay" style="display:none; width: 300px;" class="mt-3"/>
+            </div>
             <div class="mb-3">
                 <label for="featuredImageUrl" class="form-label">Featured Image Url</label>
                 <input type="text" class="form-control" id="featuredImageUrl" asp-for="AddBlogPostRequest.FeaturedImageUrl">
             </div>
+
             <div class="mb-3">
                 <label for="urlHandle" class="form-label">Url Handle</label>
                 <input type="text" class="form-control" id="urlHandle" asp-for="AddBlogPostRequest.UrlHandle">
@@ -46,7 +53,7 @@
                 <input type="text" class="form-control" id="author" asp-for="AddBlogPostRequest.Author">
             </div>
             <div class="mb-3 form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="isVisible"  asp-for="AddBlogPostRequest.Visible">
+                <input class="form-check-input" type="checkbox" id="isVisible" asp-for="AddBlogPostRequest.Visible">
                 <label class="form-check-label" for="isVisible">Is Visible</label>
             </div>
             <div class="mb-3">
@@ -60,6 +67,37 @@
 @section Scripts{
 
 <script>
-    var editor = new FroalaEditor('#content');
+     @*set up feoala editor and images goes to cloudinary instead of local images*@
+    var editor = new FroalaEditor('#content', {
+        imageUploadURL : '/api/images'
+    });
+
+    const featuredImageUploadEl = document.getElementById('featuredImageUpload');
+    const featuredImageUrl = document.getElementById('featuredImageUrl');
+    const featuredImageDisplay = document.getElementById('featuredImageDisplay');
+
+    async function uploadFeaturedImage(e) {
+        console.log(e.target.files[0]);
+
+        let data = new FormData();
+        @*jquery?*@
+        data.append('file', e.target.files[0]);
+
+        await fetch('/api/images', {
+            method: 'POST',
+            headers: {
+                'Accept': '*/*'
+            },
+            body: data
+        }).then((res) => res.json()).then((result) => {
+            featuredImageUrl.value = result.link;
+            featuredImageDisplay.style.display = 'block';
+            featuredImageDisplay.src = result.link;
+        });
+    }
+
+    featuredImageUploadEl.addEventListener('change', uploadFeaturedImage);
+
 </script>
 }
+

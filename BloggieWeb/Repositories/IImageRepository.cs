@@ -3,7 +3,6 @@ namespace BloggieWeb.Repositories
 {
     public interface IImageRepository
     {
-        Task<string> UpdateAsync(IFormFile file);
+        Task<string> UploadAsync(IFormFile file);
     }
 }
-

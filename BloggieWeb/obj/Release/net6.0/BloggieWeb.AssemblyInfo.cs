@@ -10,6 +10,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("b68ca570-07a5-41d0-b9c3-0ae275764a8f")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("BloggieWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

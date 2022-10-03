@@ -25,6 +25,9 @@ namespace BloggieWeb.Pages.Admin.Blogs
         [BindProperty]
         public AddBlogPost AddBlogPostRequest { get; set; }
 
+        [BindProperty]
+        public IFormFile FeaturedImage { get; set; }
+
         // now we talk to repository instead of DbContext
         //public AddModel(BloggieDbContext bloggieDbContext)
         public AddModel(IBlogPostRepository blogPostRepository)

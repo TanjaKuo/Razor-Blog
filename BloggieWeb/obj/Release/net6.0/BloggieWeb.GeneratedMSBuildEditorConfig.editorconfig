@@ -19,6 +19,18 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQmxvZ3MvQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Admin/Blogs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQmxvZ3MvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Admin/Blogs/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQmxvZ3MvTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Blog/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQmxvZy9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -29,6 +41,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Shared/_Notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19Ob3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Shared/_ValidationScriptsPartial.cshtml]

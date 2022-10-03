@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BloggieWeb.Repositories;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Net;
 
 namespace BloggieWeb.Controllers
 {
@@ -12,44 +8,24 @@ namespace BloggieWeb.Controllers
     [Route("api/[controller]")]
     public class ImagesController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public IActionResult Index()
+        private readonly IImageRepository _imageRepository;
+
+        public ImagesController(IImageRepository imageRepository)
         {
-            return Ok("this is the images Get mehod!");
-            //return new string[] { "value1", "value2" };
+            this._imageRepository = imageRepository;
         }
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return Ok("this is the images Get mehod!");
-        //    //return new string[] { "value1", "value2" };
-        //}
 
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpPost]
+        public async Task<IActionResult> UploadAsync(IFormFile file)
+        {
+            var imageUrl = await _imageRepository.UploadAsync(file);
 
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+            if (imageUrl == null)
+            {
+                return Problem("Something went wrong!", null, (int)HttpStatusCode.InternalServerError);
+            }
 
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+            return Json(new { link = imageUrl });
+        }
     }
 }
-

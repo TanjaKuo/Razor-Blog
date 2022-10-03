@@ -1,5 +1,5 @@
-﻿using BloggieWeb.Data;
-using BloggieWeb.Repositories;
+﻿using BloggieWeb.Repositories;
+using BloggieWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 // update images
+//builder.Services.AddControllers();
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<BloggieDbContext>(options =>
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<BloggieDbContext>(options =>
 
 // inject repository
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepositoryCloudinary>();
 
 
 var app = builder.Build();

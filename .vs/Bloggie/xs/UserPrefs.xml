@@ -1,34 +1,28 @@
 ﻿<Properties StartupConfiguration="{08CD1C71-A2F3-4F45-B48D-6C4F9623AE2F}|Default">
-  <MonoDevelop.Ide.ItemProperties.BloggieWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.BloggieWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Catchpoint enabled="false" hitAction="PrintExpression" traceExpression="error" exceptionName="System.Exception" includeSubclasses="True" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BloggieWeb/Pages/Admin/Blogs/List.cshtml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BloggieWeb/appsettings.json">
     <Files>
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/Add.cshtml.cs" Line="65" Column="57" />
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/List.cshtml.cs" Line="30" Column="66" />
-      <File FileName="BloggieWeb/Pages/Admin/Blogs/Edit.cshtml.cs" Line="62" Column="1" />
+      <File FileName="BloggieWeb/appsettings.json" Line="19" Column="3" />
+      <File FileName="../../.microsoft/usersecrets/b68ca570-07a5-41d0-b9c3-0ae275764a8f/secrets.json" Line="2" Column="3" />
+      <File FileName="BloggieWeb/Program.cs" Line="14" Column="59" />
+      <File FileName="BloggieWeb/Repositories/IBlogPostRepository.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Bloggie" expanded="True">
             <Node name="BloggieWeb" expanded="True">
-              <Node name="Pages" expanded="True">
-                <Node name="Admin" expanded="True">
-                  <Node name="Blogs" expanded="True">
-                    <Node name="Add.cshtml" expanded="True" />
-                    <Node name="Edit.cshtml" expanded="True" />
-                    <Node name="List.cshtml" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Repositories" expanded="True" />
+              <Node name="appsettings.json" selected="True" />
             </Node>
           </Node>
         </State>

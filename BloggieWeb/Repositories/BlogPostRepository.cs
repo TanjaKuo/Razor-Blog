@@ -11,7 +11,7 @@ namespace BloggieWeb.Repositories
 
         public BlogPostRepository(BloggieDbContext bloggieDbContext)
         {
-            this._bloggieDbContext = bloggieDbContext;
+            _bloggieDbContext = bloggieDbContext;
         }
 
         public async Task<BlogPost> AddAsync(BlogPost blogPost)
@@ -29,6 +29,11 @@ namespace BloggieWeb.Repositories
         public async Task<BlogPost> GetAsync(Guid id)
         {
             return await _bloggieDbContext.BlogPosts.FindAsync(id);
+        }
+
+        public async Task<BlogPost> GetAsync(string urlHandle)
+        {
+            return await _bloggieDbContext.BlogPosts.FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
         }
 
         public async Task<BlogPost> UpdateAsync(BlogPost blogPost)

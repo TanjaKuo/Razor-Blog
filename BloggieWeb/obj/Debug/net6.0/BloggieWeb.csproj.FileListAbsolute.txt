@@ -6,6 +6,7 @@
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/BloggieWeb.runtimeconfig.json
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/BloggieWeb.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/BloggieWeb.pdb
+/Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/CloudinaryDotNet.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/Humanizer.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/Microsoft.Data.SqlClient.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
@@ -21,6 +22,7 @@
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/Microsoft.Win32.SystemEvents.dll
+/Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/Newtonsoft.Json.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/System.Configuration.ConfigurationManager.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/System.Drawing.Common.dll
 /Users/tanya/Projects/Bloggie/BloggieWeb/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll
