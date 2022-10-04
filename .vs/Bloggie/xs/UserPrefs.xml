@@ -1,28 +1,34 @@
 ﻿<Properties StartupConfiguration="{08CD1C71-A2F3-4F45-B48D-6C4F9623AE2F}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.BloggieWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Catchpoint enabled="false" hitAction="PrintExpression" traceExpression="error" exceptionName="System.Exception" includeSubclasses="True" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BloggieWeb/appsettings.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BloggieWeb/Program.cs">
     <Files>
-      <File FileName="BloggieWeb/appsettings.json" Line="19" Column="3" />
-      <File FileName="../../.microsoft/usersecrets/b68ca570-07a5-41d0-b9c3-0ae275764a8f/secrets.json" Line="2" Column="3" />
-      <File FileName="BloggieWeb/Program.cs" Line="14" Column="59" />
-      <File FileName="BloggieWeb/Repositories/IBlogPostRepository.cs" Line="1" Column="1" />
+      <File FileName="BloggieWeb/Repositories/ITagRepository.cs" Line="9" Column="8" />
+      <File FileName="BloggieWeb/Repositories/BlogPostRepository.cs" Line="38" Column="10" />
+      <File FileName="BloggieWeb/Pages/Tags/Details.cshtml" Line="10" Column="48" />
+      <File FileName="BloggieWeb/Pages/Tags/Details.cshtml.cs" Line="24" Column="17" />
+      <File FileName="BloggieWeb/Pages/Blog/Details.cshtml" Line="16" Column="23" />
+      <File FileName="BloggieWeb/Program.cs" Line="44" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Bloggie" expanded="True">
             <Node name="BloggieWeb" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Pages" expanded="True">
+                <Node name="Blog" expanded="True" />
+                <Node name="Tags" expanded="True">
+                  <Node name="Details.cshtml" expanded="True" />
+                </Node>
+              </Node>
               <Node name="Repositories" expanded="True" />
-              <Node name="appsettings.json" selected="True" />
             </Node>
           </Node>
         </State>
@@ -32,4 +38,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.BloggieWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
