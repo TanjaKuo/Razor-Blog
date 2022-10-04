@@ -7,12 +7,15 @@ using BloggieWeb.Data;
 using BloggieWeb.Models.Domain;
 using BloggieWeb.Models.ViewModels;
 using BloggieWeb.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace BloggieWeb.Pages.Admin.Blogs
 {
+    [Authorize(Roles = "Admin")]
+
     public class ListModel : PageModel
     {
         //private readonly BloggieDbContext _bloggieDbContext;
@@ -22,7 +25,7 @@ namespace BloggieWeb.Pages.Admin.Blogs
         //public ListModel(BloggieDbContext bloggieDbContext)
         public ListModel(IBlogPostRepository blogPostRepository)
         {
-            this._blogPostRepository = blogPostRepository;
+            _blogPostRepository = blogPostRepository;
         }
 
 

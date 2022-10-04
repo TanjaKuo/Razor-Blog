@@ -7,11 +7,14 @@ using BloggieWeb.Data;
 using BloggieWeb.Models.Domain;
 using BloggieWeb.Models.ViewModels;
 using BloggieWeb.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BloggieWeb.Pages.Admin.Blogs
 {
+    [Authorize(Roles = "Admin")]
+
     public class EditModel : PageModel
     {
         //private readonly BloggieDbContext _bloggieDbContext;

@@ -12,14 +12,14 @@ namespace BloggieWeb.Pages
     public class LoginModel : PageModel
     {
 
-        private readonly SignInManager<IdentityUser> _signInManger;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
         [BindProperty]
         public Login LoginViewModel { get; set; }
 
-        public LoginModel(SignInManager<IdentityUser> signInManger)
+        public LoginModel(SignInManager<IdentityUser> signInManager)
         {
-            _signInManger = signInManger;
+            _signInManager = signInManager;
         }
 
 
@@ -27,13 +27,18 @@ namespace BloggieWeb.Pages
         {
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(string ReturnUrl)
         {
-            var signInResult = await _signInManger.PasswordSignInAsync(
+            var signInResult = await _signInManager.PasswordSignInAsync(
                 LoginViewModel.Username, LoginViewModel.Password, false, false);
 
             if(signInResult.Succeeded)
             {
+                if(!string.IsNullOrWhiteSpace(ReturnUrl))
+                {
+                    return RedirectToPage(ReturnUrl);
+                }
+
                 return RedirectToPage("Index");
             }
             else

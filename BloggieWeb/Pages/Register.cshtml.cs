@@ -11,14 +11,14 @@ namespace BloggieWeb.Pages
 {
     public class RegisterModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManger;
+        private readonly UserManager<IdentityUser> _userManager;
 
         [BindProperty]
         public Register RegisterViewModel { get; set; }
 
-        public RegisterModel(UserManager<IdentityUser> userManger)
+        public RegisterModel(UserManager<IdentityUser> userManager)
         {
-            _userManger = userManger;
+            _userManager = userManager;
         }
 
         public void OnGet()
@@ -27,29 +27,38 @@ namespace BloggieWeb.Pages
 
 
         public async Task<IActionResult> OnPost()
-        { 
+        {
             var user = new IdentityUser
             {
                 UserName = RegisterViewModel.Username,
                 Email = RegisterViewModel.Email,
             };
 
-            var identityResult = await _userManger.CreateAsync(user, RegisterViewModel.Password);
+            var identityResult = await _userManager.CreateAsync(user, RegisterViewModel.Password);
 
-            if(identityResult.Succeeded)
+            if (identityResult.Succeeded)
             {
-                ViewData["Notification"] = new Notification
+
+                var addRolesResult = await _userManager.AddToRoleAsync(user, "User");
+
+                if (addRolesResult.Succeeded)
                 {
-                    Type = Enums.NotificationType.Success,
-                    Message = "User registered successfully!"
+
+
+                    ViewData["Notification"] = new Notification
+                    {
+                        Type = Enums.NotificationType.Success,
+                        Message = "User registered successfully!"
+                    };
+                    return Page();
                 };
-                return Page();
+
             }
                 ViewData["Notification"] = new Notification
-            {
-                Type = Enums.NotificationType.Error,
-                Message = "Something went wrong"
-            };
+                {
+                    Type = Enums.NotificationType.Error,
+                    Message = "Something went wrong"
+                };
                 return Page();
         }
     }

@@ -27,6 +27,10 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                         </li>
+                        @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                         {
+
+            
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarDropdownAdmin">
                                 Admin
@@ -40,6 +44,7 @@
                                 </li>
                             </ul>
                         </li>
+                                }
                     </ul>
                     <div class="d-flex align-items-center">
 
@@ -48,11 +53,11 @@
                                 <div class="me-3 text-light"> 
                                     @User?.Identity?.Name
                                 </div>
-                            <a href="logout" class="btn bg-light text-dark me-3">Logout</a>
+                            <a href="/logout" class="btn bg-light text-dark me-3">Logout</a>
                             }else
                              {
-                                 <a href="login" class="btn bg-light text-dark me-3">Login</a>
-                                <a href="register" class="btn bg-light text-dark me-3">Register</a>
+                                 <a href="/login" class="btn bg-light text-dark me-3">Login</a>
+                                <a href="/register" class="btn bg-light text-dark me-3">Register</a>
                                }
 
                     </div>
