@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BloggieWeb.Models.Domain;
+using BloggieWeb.Models.ViewModels;
 using BloggieWeb.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,9 @@ namespace BloggieWeb.Pages.Blog
 
 
         public BlogPost BlogPost { get; set; }
+
+        public List<BlogComment> Comments { get; set; }
+
         public int TotalLike { get; set; }
         public bool Liked { get; set; }
 
@@ -28,12 +32,13 @@ namespace BloggieWeb.Pages.Blog
         public Guid BlogPostId { get; set; }
         [BindProperty]
         public string CommentDescription { get; set; }
-
+     
         public DetailsModel(IBlogPostRepository blogPostRepository,
             IBlogPostLikeRepository blogPostLikeRepository,
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
             IBlogPostCommentRepository blogPostCommentRepository)
+
         {
             _blogPostRepository = blogPostRepository;
             _blogPostLikeRepository = blogPostLikeRepository;
@@ -48,6 +53,7 @@ namespace BloggieWeb.Pages.Blog
 
             if(BlogPost != null)
             {
+
                 BlogPostId = BlogPost.Id;
                 // check if user login, by using  nad userManager
                 if (_signInManager.IsSignedIn(User))
@@ -57,9 +63,11 @@ namespace BloggieWeb.Pages.Blog
                     var userId = _userManager.GetUserId(User);
 
                     Liked = likes.Any(x => x.UserId == Guid.Parse(userId));
-                }
 
-                
+                    await GetComments();
+
+
+                }
 
                 TotalLike = await _blogPostLikeRepository.GetTotalLikeForBlog(BlogPost.Id);
             }
@@ -86,5 +94,28 @@ namespace BloggieWeb.Pages.Blog
             // go back to OnGet()
             return RedirectToPage("/Blog/Details", new { urlHandle = urlHandle });
         }
+
+        private async Task GetComments()
+        {
+            // get all comments
+            var blogPostComments = await _blogPostCommentRepository.GetAllAsync(BlogPost.Id);
+
+            var blogPostCommentViewModel = new List<BlogComment>();
+
+            foreach (var blogPostComment in blogPostComments)
+            {
+                blogPostCommentViewModel.Add(new BlogComment
+                {
+                    DateAdded = blogPostComment.DateAdded,
+                    Description = blogPostComment.Description,
+                    Username = (await _userManager.FindByIdAsync(blogPostComment.UserId.ToString())).UserName
+                });
+            }
+
+            Comments = blogPostCommentViewModel;
+
+        }
+
+
     }
 }
