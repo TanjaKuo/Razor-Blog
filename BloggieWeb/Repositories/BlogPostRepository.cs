@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BloggieWeb.Repositories
 {
-    public class BlogPostRepository:IBlogPostRepository
+    public class BlogPostRepository : IBlogPostRepository
     {
         private readonly BloggieDbContext _bloggieDbContext;
 
