@@ -1,11 +1,7 @@
 ﻿<Properties StartupConfiguration="{08CD1C71-A2F3-4F45-B48D-6C4F9623AE2F}|Default">
-  <MonoDevelop.Ide.ItemProperties.BloggieWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BloggieWeb/Data/BloggieDbContext.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BloggieWeb/Pages/Blog/Details.cshtml">
     <Files>
-      <File FileName="BloggieWeb/Program.cs" Line="38" Column="36" />
-      <File FileName="BloggieWeb/Models/Domain/BlogPostLike.cs" Line="12" Column="2" />
-      <File FileName="BloggieWeb/Models/Domain/BlogPost.cs" Line="35" Column="1" />
-      <File FileName="BloggieWeb/Data/BloggieDbContext.cs" Line="21" Column="1" />
+      <File FileName="BloggieWeb/Pages/Blog/Details.cshtml" Line="85" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,6 +11,12 @@
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True">
                 <Node name="Domain" expanded="True" />
+                <Node name="ViewModels" expanded="True" />
+              </Node>
+              <Node name="Pages" expanded="True">
+                <Node name="Blog" expanded="True">
+                  <Node name="Details.cshtml" expanded="True" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -25,13 +27,13 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.ItemProperties.BloggieWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Catchpoint enabled="false" hitAction="PrintExpression" traceExpression="error" exceptionName="System.Exception" includeSubclasses="True" />
-      <Breakpoint enabled="false" file="/Users/tanya/Projects/Bloggie/BloggieWeb/Program.cs" relfile="BloggieWeb/Program.cs" line="16" column="5" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MultiItemStartupConfigurations />
 </Properties>
