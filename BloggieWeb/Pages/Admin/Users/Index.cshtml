@@ -23,6 +23,7 @@
                     <th>Id</th>
                     <th>username</th>
                     <th>Email</th>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,9 @@
                         <td>@user.Id</td>
                         <td>@user.Username</td>
                         <td>@user.Email</td>
+                        <td>
+                            <a class="btn- btn-danger user-delete-btn">Delete</a>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -51,15 +55,15 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Username</label>
-                        <input class="form-control" type="text" />
+                        <input class="form-control" type="text" asp-for="AddUserRequest.Username"/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input class="form-control" type="text" />
+                        <input class="form-control" type="email" asp-for="AddUserRequest.Email"/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input class="form-control" type="password" />
+                        <input class="form-control" type="password" asp-for="AddUserRequest.Password"/>
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
@@ -68,12 +72,17 @@
                                 User Role
                             </label>
                         </div>
+
+                        @if(User.IsInRole("SuperAdmin"))
+            {
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Admin">
+                            <input class="form-check-input" type="checkbox" asp-for="AddUserRequest.AdminCheckbox">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Admin Role
                             </label>
                         </div>
+            }
                     </div>
                 </div>
                 <div class="modal-footer">

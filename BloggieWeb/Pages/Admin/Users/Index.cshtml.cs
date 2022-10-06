@@ -4,17 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using BloggieWeb.Models.ViewModels;
 using BloggieWeb.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BloggieWeb.Pages.Admin.Users
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly IUserRepository _userRepository;
 
         // we don't want to show all the user identity, only a few, sp we create a viewmodel
         public List<User> Users { get; set; }
+
+        [BindProperty]
+        public AddUser AddUserRequest { get; set; }
 
         public IndexModel(IUserRepository userRepository)
         {
@@ -36,6 +42,29 @@ namespace BloggieWeb.Pages.Admin.Users
                     Email = user.Email
                 });
             }
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPost()
+        {
+            var identityUser = new IdentityUser
+            {
+                UserName = AddUserRequest.Username,
+                Email = AddUserRequest.Email
+            };
+
+            var roles = new List<string> { "User" };
+            if(AddUserRequest.AdminCheckbox)
+            {
+                roles.Add("Admin");
+            }
+
+            var result = await _userRepository.Add(identityUser, AddUserRequest.Password, roles);
+
+            if(result)
+            {
+                return RedirectToPage("/Admin/Users/Index");
+            };
             return Page();
         }
     }

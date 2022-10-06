@@ -7,6 +7,8 @@ namespace BloggieWeb.Repositories
     {
         Task<IEnumerable<IdentityUser>> GetAll();
 
+        Task<bool> Add(IdentityUser identityUser, string password, List<string> roles);
+
     }
 }
 

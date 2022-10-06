@@ -73,13 +73,6 @@
                     <label for="tags" class="form-label">Tags(comma seperated)</label>
                     <input type="text" class="form-control" id="tags" asp-for="Tags">
 
-                    @*@if (Model.Tags != null)
-                    {
-                        foreach (var tag in Model.Tags)
-                        {
-                            <div>@tag</div>
-                        }
-                    }*@
                 </div>
                 <div class="mb-3 form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="isVisible" asp-for="BlogPost.Visible">
