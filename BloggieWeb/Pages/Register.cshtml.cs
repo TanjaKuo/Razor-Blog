@@ -28,38 +28,50 @@ namespace BloggieWeb.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            var user = new IdentityUser
-            {
-                UserName = RegisterViewModel.Username,
-                Email = RegisterViewModel.Email,
-            };
 
-            var identityResult = await _userManager.CreateAsync(user, RegisterViewModel.Password);
-
-            if (identityResult.Succeeded)
+            if (ModelState.IsValid)
             {
 
-                var addRolesResult = await _userManager.AddToRoleAsync(user, "User");
 
-                if (addRolesResult.Succeeded)
+
+
+                var user = new IdentityUser
                 {
-
-
-                    ViewData["Notification"] = new Notification
-                    {
-                        Type = Enums.NotificationType.Success,
-                        Message = "User registered successfully!"
-                    };
-                    return Page();
+                    UserName = RegisterViewModel.Username,
+                    Email = RegisterViewModel.Email,
                 };
 
-            }
+                var identityResult = await _userManager.CreateAsync(user, RegisterViewModel.Password);
+
+                if (identityResult.Succeeded)
+                {
+
+                    var addRolesResult = await _userManager.AddToRoleAsync(user, "User");
+
+                    if (addRolesResult.Succeeded)
+                    {
+
+
+                        ViewData["Notification"] = new Notification
+                        {
+                            Type = Enums.NotificationType.Success,
+                            Message = "User registered successfully!"
+                        };
+                        return Page();
+                    };
+
+                }
                 ViewData["Notification"] = new Notification
                 {
                     Type = Enums.NotificationType.Error,
                     Message = "Something went wrong"
                 };
                 return Page();
-        }
+            }
+        else
+        {
+        return Page();
+    }
+}
     }
 }
