@@ -1,5 +1,6 @@
 ﻿using System;
 using BloggieWeb.Data;
+using BloggieWeb.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,17 +21,28 @@ namespace BloggieWeb.Repositories
         {
             var identityResult = await _userManager.CreateAsync(identityUser, password);
 
-            if(identityResult.Succeeded)
+            if (identityResult.Succeeded)
             {
-                identityResult =  await _userManager.AddToRolesAsync(identityUser, roles);
+                identityResult = await _userManager.AddToRolesAsync(identityUser, roles);
 
-                if(identityResult.Succeeded)
+                if (identityResult.Succeeded)
                 {
                     return true;
                 }
 
             }
-                    return false;
+            return false;
+        }
+
+        public async Task Delete(Guid userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+
+            if (user != null)
+            {
+                await _userManager.DeleteAsync(user);
+            }
+
         }
 
         public async Task<IEnumerable<IdentityUser>> GetAll()
@@ -41,7 +53,7 @@ namespace BloggieWeb.Repositories
                 .FirstOrDefaultAsync(x => x.Email == "superadmin@bloggie.com");
 
             // remove superadmin from users
-            if(superAdminUser != null)
+            if (superAdminUser != null)
             {
                 users.Remove(superAdminUser);
             }
@@ -51,4 +63,3 @@ namespace BloggieWeb.Repositories
 
     }
 }
-

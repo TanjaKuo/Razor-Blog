@@ -11,37 +11,51 @@
 
 <div>
     <div class="container">
+
         <div class="mb-3 d-flex justify-content-end">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            <button type="button" class="btn btn-dark"
+                    data-bs-toggle="modal" data-bs-target="#addUserModal">
                 Add User
             </button>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>username</th>
-                    <th>Email</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model.Users)
-                {
+
+        <form method="post" asp-page-handler="delete" id="deleteUserForm">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@user.Id</td>
-                        <td>@user.Username</td>
-                        <td>@user.Email</td>
-                        <td>
-                            <a class="btn- btn-danger user-delete-btn">Delete</a>
-                        </td>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th> </th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.Username</td>
+                            <td>@user.Email</td>
+                            @if(User.IsInRole("SuperAdmin"))
+                                    {
+                            <td>
+                                <a class="btn btn-danger user-delete-btn"
+                                   data-id="@user.Id">
+                                    Delete
+                                </a>
+                            </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <input type="hidden" asp-for="SelectedUserId" id="selectedUserId" />
+
+        </form>
     </div>
 </div>
+
 
 <form method="post">
     <!-- Modal -->
@@ -49,40 +63,50 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+                    <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Username</label>
-                        <input class="form-control" type="text" asp-for="AddUserRequest.Username"/>
+                        <input type="text" class="form-control"
+                               asp-for="AddUserRequest.Username" required />
+                        <span class="text-danger"
+                              asp-validation-for="AddUserRequest.Username"></span>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input class="form-control" type="email" asp-for="AddUserRequest.Email"/>
+                        <input type="email" class="form-control"
+                               asp-for="AddUserRequest.Email" required />
+                        <span class="text-danger"
+                              asp-validation-for="AddUserRequest.Email"></span>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input class="form-control" type="password" asp-for="AddUserRequest.Password"/>
+                        <input type="password" class="form-control"
+                               asp-for="AddUserRequest.Password" required minlength="6" />
+                        <span class="text-danger"
+                              asp-validation-for="AddUserRequest.Password"></span>
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="User" checked disabled>
+                            <input class="form-check-input" type="checkbox"
+                                   value="User" checked disabled>
                             <label class="form-check-label" for="flexCheckDefault">
                                 User Role
                             </label>
                         </div>
 
-                        @if(User.IsInRole("SuperAdmin"))
-            {
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" asp-for="AddUserRequest.AdminCheckbox">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Admin Role
-                            </label>
-                        </div>
-            }
+                        @if (User.IsInRole("SuperAdmin"))
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                       asp-for="AddUserRequest.AdminCheckbox">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Admin Role
+                                </label>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -93,3 +117,17 @@
         </div>
     </div>
 </form>
+
+
+@section Scripts {
+    <script>const userDeleteElements = document.querySelectorAll('.user-delete-btn');
+        const selectedUserIdElement = document.getElementById('selectedUserId');
+        const deleteUserFormElement = document.getElementById('deleteUserForm');
+        userDeleteElements.forEach((element) => {
+            element.addEventListener('click', function () {
+                const userId = element.dataset.id;
+                selectedUserIdElement.value = userId;
+                deleteUserFormElement.submit();
+            })
+        })</script>
+}

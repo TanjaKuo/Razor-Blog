@@ -9,6 +9,7 @@ namespace BloggieWeb.Repositories
 
         Task<bool> Add(IdentityUser identityUser, string password, List<string> roles);
 
+        Task Delete(Guid userId);
+
     }
 }
-
