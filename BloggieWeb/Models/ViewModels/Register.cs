@@ -14,6 +14,7 @@ namespace BloggieWeb.Models.ViewModels
 
         [Required]
         [MinLength(6)]
+       
         public string Password { get; set; }
     
     }

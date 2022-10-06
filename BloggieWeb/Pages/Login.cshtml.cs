@@ -27,31 +27,36 @@ namespace BloggieWeb.Pages
         {
         }
 
-        public async Task<IActionResult> OnPost(string ReturnUrl)
+        // we use ? because the ModelState doesn't necessary has ReturnUrl
+        public async Task<IActionResult> OnPost(string? ReturnUrl)
         {
-            var signInResult = await _signInManager.PasswordSignInAsync(
-                LoginViewModel.Username, LoginViewModel.Password, false, false);
-
-            if(signInResult.Succeeded)
+            if (ModelState.IsValid)
             {
-                if(!string.IsNullOrWhiteSpace(ReturnUrl))
+                var signInResult = await _signInManager.PasswordSignInAsync(
+                    LoginViewModel.Username, LoginViewModel.Password, false, false);
+
+                if (signInResult.Succeeded)
                 {
-                    return RedirectToPage(ReturnUrl);
+                    if (!string.IsNullOrWhiteSpace(ReturnUrl))
+                    {
+                        return RedirectToPage(ReturnUrl);
+                    }
+
+                    return RedirectToPage("Index");
                 }
-
-                return RedirectToPage("Index");
-            }
-            else
-            {
-                ViewData["Notification"] = new Notification
+                else
                 {
-                    Type = Enums.NotificationType.Error,
-                    Message = "Unable to login"
-                };
-                return Page();
-            }    
+                    ViewData["Notification"] = new Notification
+                    {
+                        Type = Enums.NotificationType.Error,
+                        Message = "Unable to login"
+                    };
+                    return Page();
+
+                }
+            }
+                    return Page();
+
         }
-
-
     }
-}
+}  
