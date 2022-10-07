@@ -11,15 +11,15 @@ namespace BloggieWeb.Models.ViewModels
         public string PageTitle { get; set; }
         [Required]
         public string Content { get; set; }
-         [Required]
+        [Required]
         public string ShortDescription { get; set; }
-         [Required]
+        [Required]
         public string FeaturedImageUrl { get; set; }
-         [Required]
+        [Required]
         public string UrlHandle { get; set; }
-         [Required]
+        [Required]
         public DateTime PublishedDate { get; set; }
-         [Required]
+        [Required]
         public string Author { get; set; }
 
         public bool Visible { get; set; }

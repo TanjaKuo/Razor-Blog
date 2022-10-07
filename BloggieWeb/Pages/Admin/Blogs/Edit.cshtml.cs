@@ -1,108 +1,139 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
-using BloggieWeb.Data;
+﻿using BloggieWeb.Data;
 using BloggieWeb.Models.Domain;
 using BloggieWeb.Models.ViewModels;
 using BloggieWeb.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 
 namespace BloggieWeb.Pages.Admin.Blogs
 {
     [Authorize(Roles = "Admin")]
-
     public class EditModel : PageModel
     {
-        //private readonly BloggieDbContext _bloggieDbContext;
-        private readonly IBlogPostRepository _blogPostRepository;
+        private readonly IBlogPostRepository blogPostRepository;
 
         [BindProperty]
-        public BlogPost BlogPost { get; set; }
+        public EditBlogPostRequest BlogPost { get; set; }
+
         [BindProperty]
-        public IFormFile FeaturedImage { get; set; }
+        public IFormFile? FeaturedImage { get; set; }
+
         [BindProperty]
+        [Required]
         public string Tags { get; set; }
 
-        //public EditModel(BloggieDbContext bloggieDbContext)
         public EditModel(IBlogPostRepository blogPostRepository)
         {
-            _blogPostRepository = blogPostRepository;
+            this.blogPostRepository = blogPostRepository;
         }
 
         public async Task OnGet(Guid id)
-        //public void OnGet(Guid id)
         {
-            // by using BlogPost, it will ensure we have id, thus we don't need to check if id == null 
-            //BlogPost = await _bloggieDbContext.BlogPosts.FindAsync(id);
-            BlogPost = await _blogPostRepository.GetAsync(id);
+            var blogPostDomainModel = await blogPostRepository.GetAsync(id);
 
-            if(BlogPost != null && BlogPost.Tags != null)
+            if (blogPostDomainModel != null && blogPostDomainModel.Tags != null)
             {
-                Tags = string.Join(',', BlogPost.Tags.Select(x => x.Name));
+                BlogPost = new EditBlogPostRequest
+                {
+                    Id = blogPostDomainModel.Id,
+                    Heading = blogPostDomainModel.Heading,
+                    PageTitle = blogPostDomainModel.PageTitle,
+                    Content = blogPostDomainModel.Content,
+                    ShortDescription = blogPostDomainModel.ShortDescription,
+                    FeaturedImageUrl = blogPostDomainModel.FeaturedImageUrl,
+                    UrlHandle = blogPostDomainModel.UrlHandle,
+                    PublishedDate = blogPostDomainModel.PublishedDate,
+                    Author = blogPostDomainModel.Author,
+                    Visible = blogPostDomainModel.Visible
+                };
+
+                Tags = string.Join(',', blogPostDomainModel.Tags.Select(x => x.Name));
             }
         }
 
-        // because we have two btns in edit page, using OnPostEdit instead of OnPost
-        //public IActionResult OnPostEdit()
         public async Task<IActionResult> OnPostEdit()
         {
-            // var existingBlogPost = _bloggieDbContext.BlogPosts.Find(BlogPost.Id);
+            ValidateEditBlogPost();
 
-
-            // dbcontext and EF are looking after our code, so we don't need to update it just need to save it
-            //_bloggieDbContext.BlogPosts.Update(existingBlogPost);
-            //_bloggieDbContext.SaveChanges();
-
-           try
-                
-        {
-                BlogPost.Tags = new List<Tag>(Tags.Split(',').Select(x => new Tag { Name = x.Trim() }));
- 
-                await _blogPostRepository.UpdateAsync(BlogPost);
-                //ViewData["MessageDescription"] = "Record was successfully saved!";
-
-                ViewData["Notification"] = new Notification
-                {
-                    Message = "Record update successfully!",
-                    Type = Enums.NotificationType.Success
-                };
-            }catch(Exception e)
+            if (ModelState.IsValid && BlogPost.FeaturedImageUrl.Any())
             {
-                ViewData["Notification"] = new Notification
+                try
                 {
-                    Message = "Oh no! Something went wrong",
-                    Type = Enums.NotificationType.Error
-                };
+                    var blogPostDomainModel = new BlogPost
+                    {
+                        Id = BlogPost.Id,
+                        Heading = BlogPost.Heading,
+                        PageTitle = BlogPost.PageTitle,
+                        Content = BlogPost.Content,
+                        ShortDescription = BlogPost.ShortDescription,
+                        FeaturedImageUrl = BlogPost.FeaturedImageUrl,
+                        UrlHandle = BlogPost.UrlHandle,
+                        PublishedDate = BlogPost.PublishedDate,
+                        Author = BlogPost.Author,
+                        Visible = BlogPost.Visible,
+                        Tags = new List<Tag>(Tags.Split(',').Select(x => new Tag() { Name = x.Trim() }))
+                    };
+
+
+                    await blogPostRepository.UpdateAsync(blogPostDomainModel);
+
+                    ViewData["Notification"] = new Notification
+                    {
+                        Type = Enums.NotificationType.Success,
+                        Message = "Record updated successfully!"
+                    };
+                }
+                catch (Exception ex)
+                {
+                    ViewData["Notification"] = new Notification
+                    {
+                        Type = Enums.NotificationType.Error,
+                        Message = "Something went wrong!"
+                    };
+                }
+
+                return Page();
             }
 
-            //return RedirectToPage("/Admin/Blogs/List");
             return Page();
         }
 
-        // if we don't use OnPost keyword, we have to use [HttpPost] att
-        //public IActionResult OnPostDelete()
         public async Task<IActionResult> OnPostDelete()
         {
-            //var existingBlogPost = _bloggieDbContext.BlogPosts.Find(BlogPost.Id);
-
-            var deleted = await _blogPostRepository.DeleteAsync(BlogPost.Id);
-            if(deleted)
+            var deleted = await blogPostRepository.DeleteAsync(BlogPost.Id);
+            if (deleted)
             {
                 var notification = new Notification
                 {
-                    Message = "Blog post was deleted successfully!",
-                    Type = Enums.NotificationType.Success
+                    Type = Enums.NotificationType.Success,
+                    Message = "Blog was deleted successfully!"
                 };
 
                 TempData["Notification"] = JsonSerializer.Serialize(notification);
+
                 return RedirectToPage("/Admin/Blogs/List");
             }
 
             return Page();
+        }
+
+
+        private void ValidateEditBlogPost()
+        {
+            if (!string.IsNullOrWhiteSpace(BlogPost.Heading))
+            {
+                // check for minimum length
+                if (BlogPost.Heading.Length < 10 || BlogPost.Heading.Length > 72)
+                {
+                    ModelState.AddModelError("BlogPost.Heading",
+                        "Heading can only be between 10 and 72 characters.");
+                }
+                // check for maximum length
+            }
         }
     }
 }
