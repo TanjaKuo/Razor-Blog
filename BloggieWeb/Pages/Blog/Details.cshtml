@@ -7,15 +7,18 @@
 @inject UserManager<IdentityUser> userManager
 @inject SignInManager<IdentityUser> signInManager
 
-@{
-    ViewData["Title"] = Model.BlogPost.PageTitle;
-}
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-6">
+@if (Model.BlogPost != null)
+{
 
-            @if (Model.BlogPost != null)
-            {
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+
+                @{
+                    ViewData["Title"] = Model.BlogPost.PageTitle;
+                }
+
+
                 <h1 class="mb-3">@Model.BlogPost.Heading.</h1>
                 <div class="d-flex justify-content-between mb-3">
                     <span class="text-secondary">@Model.BlogPost.Author</span>
@@ -71,6 +74,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Comment Description</label>
                                     <input type="text" class="form-control" asp-for="CommentDescription" />
+                                    <span class="text-danger" asp-validation-for="CommentDescription"></span>
                                 </div>
                                 <div class="mb-3">
                                     <button class="btn btn-dark" type="submit">Add Comment</button>
@@ -83,42 +87,37 @@
                     </div>
                     <div class="card-body">
                         @if (Model.Comments != null && Model.Comments.Any())
-                             {
-                                 @foreach (var comment in Model.Comments)
-                                 {
-                                     <div class="card mb-3 ">
-                                         <div class="card-body">
-                                             <div> @comment.Description</div>
-                                             <div class="d-flex justify-content-between">
-                                                 <span class="text-secondary">@comment.Username</span>
-                                                 <span class="text-secondary">@comment.DateAdded.ToShortDateString()</span>
-                                             </div>
-                                         </div>
+                        {
+                            @foreach (var comment in Model.Comments)
+                            {
+                                <div class="card mb-3 ">
+                                    <div class="card-body">
+                                        <div> @comment.Description</div>
+                                        <div class="d-flex justify-content-between">
+                                            <span class="text-secondary">@comment.Username</span>
+                                            <span class="text-secondary">@comment.DateAdded.ToShortDateString()</span>
+                                        </div>
+                                    </div>
 
-                                     </div>
-                                 }
-                                 } else
-                    {
-                        <p>No comments</p>
-                    }
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>Login and leave comments</p>
+                        }
 
-                         </div>
                     </div>
-
-            }
-            else
-            {
-                <h2>Blog Post Not Found!</h2>
-            }
+                </div>
 
 
+            </div>
         </div>
     </div>
-</div>
 
-@section Scripts {
+    @section Scripts {
 
-    <script>
+        <script>
 
         const btnLike = document.getElementById("btnLike");
         const totalLikes = document.getElementById("totalLikes");
@@ -136,7 +135,7 @@
 
     async function addLikeForBlog() {
 
-        
+
             fetch('/api/blogpostlike/add', {
                 method: 'POST',
                 headers: {
@@ -156,6 +155,11 @@
 
     btnLike.addEventListener('click', addLikeForBlog);
 
-    </script>
-}
+        </script>
+    }
 
+}
+else
+{
+    <partial name="_PageNotFound" />
+}

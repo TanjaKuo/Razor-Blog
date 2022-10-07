@@ -77,9 +77,21 @@ namespace BloggieWeb.Pages.Admin.Blogs
             if (AddBlogPostRequest.PublishedDate.Date < DateTime.Now.Date)
             {
                 ModelState.AddModelError("AddBlogPostRequest.PublishedDate",
-                    $"PublishedDate can only be today's date or a future date.");
+                    "PublishedDate can only be today's date or a future date.");
             }
-            
+
+            if(AddBlogPostRequest.Content.Length <= 100)
+            {
+                ModelState.AddModelError("(AddBlogPostRequest.Content",
+                  "Content must more than 100 characters.");
+            }
+
+            if (!AddBlogPostRequest.FeaturedImageUrl.StartsWith("https"))
+            {
+                ModelState.AddModelError("(AddBlogPostRequest.FeaturedImageUrl",
+                  "Please provide correct url.");
+            }
+
         }
     }
 }

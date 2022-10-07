@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using BloggieWeb.Models.Domain;
@@ -30,7 +31,10 @@ namespace BloggieWeb.Pages.Blog
         // bind with UI, get id from OnGet, comment
         [BindProperty]
         public Guid BlogPostId { get; set; }
+
         [BindProperty]
+        [Required]
+        [MinLength(2), MaxLength(200)]
         public string CommentDescription { get; set; }
      
         public DetailsModel(IBlogPostRepository blogPostRepository,
@@ -49,28 +53,7 @@ namespace BloggieWeb.Pages.Blog
 
         public async Task<IActionResult> OnGet(string urlHandle)
         {
-            BlogPost = await _blogPostRepository.GetAsync(urlHandle);
-
-            if(BlogPost != null)
-            {
-
-                BlogPostId = BlogPost.Id;
-                // check if user login, by using  nad userManager
-                if (_signInManager.IsSignedIn(User))
-                {
-                    var likes = await _blogPostLikeRepository.GetLikesForBlog(BlogPost.Id);
-                    // check if user already like the post
-                    var userId = _userManager.GetUserId(User);
-
-                    Liked = likes.Any(x => x.UserId == Guid.Parse(userId));
-
-                    await GetComments();
-
-
-                }
-
-                TotalLike = await _blogPostLikeRepository.GetTotalLikeForBlog(BlogPost.Id);
-            }
+            await GetBlog(urlHandle);
 
             return Page();
         }
@@ -78,6 +61,8 @@ namespace BloggieWeb.Pages.Blog
         public async Task<IActionResult> OnPost(string urlHandle)
         {
 
+            if(ModelState.IsValid)
+            {
             if (_signInManager.IsSignedIn(User) && !string.IsNullOrWhiteSpace(CommentDescription))
             {
                 var userId = _userManager.GetUserId(User);
@@ -93,6 +78,11 @@ namespace BloggieWeb.Pages.Blog
             }
             // go back to OnGet()
             return RedirectToPage("/Blog/Details", new { urlHandle = urlHandle });
+        }
+
+            await GetBlog(urlHandle);
+
+            return Page();
         }
 
         private async Task GetComments()
@@ -116,6 +106,32 @@ namespace BloggieWeb.Pages.Blog
 
         }
 
+
+        private async Task GetBlog(string urlHandle)
+        {
+            BlogPost = await _blogPostRepository.GetAsync(urlHandle);
+
+            if (BlogPost != null)
+            {
+
+                BlogPostId = BlogPost.Id;
+                // check if user login, by using  nad userManager
+                if (_signInManager.IsSignedIn(User))
+                {
+                    var likes = await _blogPostLikeRepository.GetLikesForBlog(BlogPost.Id);
+                    // check if user already like the post
+                    var userId = _userManager.GetUserId(User);
+
+                    Liked = likes.Any(x => x.UserId == Guid.Parse(userId));
+
+                    await GetComments();
+
+
+                }
+
+                TotalLike = await _blogPostLikeRepository.GetTotalLikeForBlog(BlogPost.Id);
+            }
+        }
 
     }
 }
