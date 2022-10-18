@@ -179,21 +179,30 @@ Personal travel blog which provides tips and information for people interested i
 
 
 ### Register Page
+![Register](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/register.png)
 
-### Sign In
+### Login Page
+![Login](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/login.png)
 
-### Home Page
+### Home Page - user all user && admin only
+![Home](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/home.png)
+![Home](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/home-admin.png)
 
 ### Blog Post - Like and Comment for login user only
+![CommentSection](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/comment-sction.png)
+![LikeSection](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/like-section.png)
 
 ### Add Blog Post Page - Admin and Super Admin only
+![AddBlogPost](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/add-page.png)
 
 ### Edit Blog Post Page - Admin and Super Admin only
+![EditBlogPost](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/edit-page.png)
 
 ### View Blog Post Page - Admin and Super Admin only
+![ViewBlogPosts](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/all-post-page.png)
 
 ### View All The Users Page - Admin and Super Admin only
-
+![ViewAllUsers](https://github.com/TanjaKuo/Razor-Blog/blob/main/BloggieWeb/doc/all-user-page.png)
 
 
 
