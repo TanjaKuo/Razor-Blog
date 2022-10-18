@@ -22,6 +22,7 @@
     <None Remove="Pages\Tags\" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <None Remove="Pages\Admin\Users\" />
+    <None Remove="doc\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -34,6 +35,7 @@
     <Folder Include="Pages\Blog\" />
     <Folder Include="Pages\Tags\" />
     <Folder Include="Pages\Admin\Users\" />
+    <Folder Include="doc\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />

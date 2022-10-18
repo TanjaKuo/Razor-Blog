@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rbFhMIQhuhDA/bUm6db66We6dd3dIgAP6LghbKMEKM+390D9ZbwFTYDnhpjyjkG1gVa1OLcH+JbKDzsibZZ1JQ==",
+  "dgSpecHash": "vTu6DBuYKxqmeV3ufAlsLknKAI1k4v+LVqKSkrUoovt4Lpnou7BRNbHJ7ES8sRh+PE5nEwfsCNs8NJ+9T5ZAYA==",
   "success": true,
-  "projectFilePath": "/Users/tanya/Projects/Bloggie/BloggieWeb/BloggieWeb.csproj",
+  "projectFilePath": "/Users/tanya/Razor-Blog/BloggieWeb/BloggieWeb.csproj",
   "expectedPackageFiles": [
     "/Users/tanya/.nuget/packages/cloudinarydotnet/1.20.0/cloudinarydotnet.1.20.0.nupkg.sha512",
     "/Users/tanya/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",

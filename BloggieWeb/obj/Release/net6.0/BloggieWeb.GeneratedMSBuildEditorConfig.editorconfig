@@ -8,85 +8,85 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BloggieWeb
 build_property.RootNamespace = BloggieWeb
-build_property.ProjectDir = /Users/tanya/Projects/Bloggie/BloggieWeb/
+build_property.ProjectDir = /Users/tanya/Razor-Blog/BloggieWeb/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/tanya/Projects/Bloggie/BloggieWeb
+build_property.MSBuildProjectDirectory = /Users/tanya/Razor-Blog/BloggieWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/AccessDenied.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWNjZXNzRGVuaWVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Admin/Blogs/Add.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Admin/Blogs/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQmxvZ3MvQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Admin/Blogs/Edit.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Admin/Blogs/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQmxvZ3MvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Admin/Blogs/List.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Admin/Blogs/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQmxvZ3MvTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Admin/Users/Index.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Admin/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vVXNlcnMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Blog/Details.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Blog/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQmxvZy9EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Error.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Index.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Login.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Logout.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Privacy.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Register.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Shared/_Notification.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Shared/_Notification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19Ob3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Shared/_PageNotFound.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Shared/_PageNotFound.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19QYWdlTm90Rm91bmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Tags/Details.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Tags/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVGFncy9EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/_ViewImports.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/_ViewStart.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tanya/Projects/Bloggie/BloggieWeb/Pages/Shared/_Layout.cshtml]
+[/Users/tanya/Razor-Blog/BloggieWeb/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-0eb7ey5hme

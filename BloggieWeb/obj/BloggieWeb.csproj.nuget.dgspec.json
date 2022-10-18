@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/tanya/Projects/Bloggie/BloggieWeb/BloggieWeb.csproj": {}
+    "/Users/tanya/Razor-Blog/BloggieWeb/BloggieWeb.csproj": {}
   },
   "projects": {
-    "/Users/tanya/Projects/Bloggie/BloggieWeb/BloggieWeb.csproj": {
+    "/Users/tanya/Razor-Blog/BloggieWeb/BloggieWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tanya/Projects/Bloggie/BloggieWeb/BloggieWeb.csproj",
+        "projectUniqueName": "/Users/tanya/Razor-Blog/BloggieWeb/BloggieWeb.csproj",
         "projectName": "BloggieWeb",
-        "projectPath": "/Users/tanya/Projects/Bloggie/BloggieWeb/BloggieWeb.csproj",
+        "projectPath": "/Users/tanya/Razor-Blog/BloggieWeb/BloggieWeb.csproj",
         "packagesPath": "/Users/tanya/.nuget/packages/",
-        "outputPath": "/Users/tanya/Projects/Bloggie/BloggieWeb/obj/",
+        "outputPath": "/Users/tanya/Razor-Blog/BloggieWeb/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/tanya/.nuget/NuGet/NuGet.Config"
